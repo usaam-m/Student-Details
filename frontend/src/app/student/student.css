@@ -1,0 +1,121 @@
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #f0f8ff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 90, 180, 0.2);
+  color: #003366;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #0078d4;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+select {
+  background-color: white;
+  color: #003366;
+}
+
+button {
+  background: #0078d4;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #005a9e;
+}
+
+.message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+}
+
+.search-bar {
+  margin: 15px 0;
+  text-align: right;
+}
+
+.search-bar input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #0078d4;
+  width: 200px;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.student-table th,
+.student-table td {
+  border: 1px solid #0078d4;
+  padding: 10px;
+  text-align: center;
+}
+
+.student-table th {
+  background-color: #0078d4;
+  color: white;
+  position: relative;
+  white-space: nowrap;
+}
+
+.student-table th button {
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 6px;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.student-table th button:hover {
+  opacity: 1;
+}
+
+.student-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.student-table td button {
+  background-color: #0078d4;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 13px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.student-table td button:hover {
+  background-color: #005a9e;
+}
+
+.name-group {
+  display: flex;
+  gap: 10px;
+}
+
+.name-group input {
+  flex: 1;
+}

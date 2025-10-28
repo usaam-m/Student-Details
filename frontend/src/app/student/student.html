@@ -1,0 +1,60 @@
+<div class="container">
+  <h2>Student Details Management</h2>
+
+  <form (submit)="addOrUpdateStudent(); $event.preventDefault()">
+    <div class="name-group">
+      <input type="text" placeholder="First Name" [(ngModel)]="firstName" name="firstName" required />
+      <input type="text" placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required />
+    </div>
+    <input type="date" [(ngModel)]="dob" name="dob" required />
+    <select [(ngModel)]="mainCourse" name="mainCourse" (change)="updateDepartments()" required>
+      <option value="">Select Course</option>
+      <option *ngFor="let course of (courseData | keyvalue)" [value]="course.key">{{ course.key }}</option>
+    </select>
+    <select [(ngModel)]="course" name="course" required [disabled]="!mainCourse">
+      <option value="">Select Department</option>
+      <option *ngFor="let dept of filteredDepartments" [value]="dept">{{ dept }}</option>
+    </select>
+    <input type="text" placeholder="City" [(ngModel)]="city" name="city" required />
+    <button type="submit">{{ editingId ? 'Update' : 'Add' }} Student</button>
+    <button type="button" (click)="resetForm()">Clear</button>
+  </form>
+
+  <p class="message">{{ message }}</p>
+
+  <div class="search-bar">
+  <input type="text" [(ngModel)]="searchText" placeholder="Search students..." />
+  </div>
+
+  <table class="student-table">
+  <thead>
+    <tr>
+      <th (click)="setSort('name')">Full Name<button (click)="setSort('name')">
+          {{ sortKey === 'name' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}
+        </button></th>
+      <th (click)="setSort('dob')">Date of Birth<button (click)="setSort('dob')">
+          {{ sortKey === 'dob' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}
+        </button></th>
+      <th (click)="setSort('course')">Course<button (click)="setSort('course')">
+          {{ sortKey === 'course' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}
+        </button></th>
+      <th (click)="setSort('city')">City<button (click)="setSort('city')">
+          {{ sortKey === 'city' ? (sortDirection === 'asc' ? '▲' : '▼') : '↕' }}
+        </button></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of filteredStudents">
+      <td>{{ s.name }}</td>
+      <td>{{ s.dob | date: 'dd-MM-yyyy' }}</td>
+      <td>{{ s.course }}</td>
+      <td>{{ s.city }}</td>
+      <td>
+        <button (click)="editStudent(s)">Edit</button>
+        <button (click)="deleteStudent(s._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+</div>
