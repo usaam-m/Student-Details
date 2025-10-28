@@ -15,16 +15,16 @@ router.get("/", async (req, res) => {
 
 // CREATE student (with validation + duplicate check)
 router.post("/", async (req, res) => {
-  const { name, age, course, city } = req.body;
+  const { name, dob, course, city } = req.body;
 
-  if (!name || !age || !course || !city)
+  if (!name || !dob || !course || !city)
     return res.status(400).json({ error: "All fields are required" });
 
   try {
     const existing = await Student.findOne({ name, course, city });
     if (existing) return res.status(409).json({ error: "Duplicate student found" });
 
-    const student = new Student({ name, age, course, city });
+    const student = new Student({ name, dob, course, city });
     await student.save();
     res.status(201).json(student);
   } catch (err) {
@@ -34,9 +34,9 @@ router.post("/", async (req, res) => {
 
 // UPDATE student
 router.put("/:id", async (req, res) => {
-  const { name, age, course, city } = req.body;
+  const { name, dob, course, city } = req.body;
 
-  if (!name || !age || !course || !city)
+  if (!name || !dob || !course || !city)
     return res.status(400).json({ error: "All fields are required" });
 
   try {
@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
 
     const updated = await Student.findByIdAndUpdate(
       req.params.id,
-      { name, age, course, city },
+      { name, dob, course, city },
       { new: true }
     );
 
