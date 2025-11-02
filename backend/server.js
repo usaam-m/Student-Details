@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors({ origin: "*" })); // Allow all origins
 
+app.get("/", (req, res) => {
+  res.send("Server is running successfully ✅");
+});
+
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ MongoDB Atlas Connected"))
